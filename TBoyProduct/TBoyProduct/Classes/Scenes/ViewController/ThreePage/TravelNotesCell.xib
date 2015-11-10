@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="KGk-i7-Jjw" customClass="TravelNotesCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aI5-ZE-9CT">
+                        <rect key="frame" x="20" y="0.0" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="aI5-ZE-9CT" secondAttribute="height" multiplier="1:1" id="HhN-mh-Rfr"/>
+                            <constraint firstAttribute="width" constant="20" id="aI0-YQ-zGQ"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" translatesAutoresizingMaskIntoConstraints="NO" id="l1b-uN-Wil">
+                        <rect key="frame" x="280" y="0.0" width="20" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="7Ac-vF-paC"/>
+                            <constraint firstAttribute="width" secondItem="l1b-uN-Wil" secondAttribute="height" multiplier="28:29" id="jyx-ei-Kpc"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvd-SO-Nzv">
+                        <rect key="frame" x="40" y="0.0" width="240" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Tvd-SO-Nzv" firstAttribute="top" secondItem="l1b-uN-Wil" secondAttribute="top" id="EnA-gl-guH"/>
+                    <constraint firstItem="l1b-uN-Wil" firstAttribute="leading" secondItem="Tvd-SO-Nzv" secondAttribute="trailing" id="UIL-4i-ndd"/>
+                    <constraint firstItem="Tvd-SO-Nzv" firstAttribute="leading" secondItem="aI5-ZE-9CT" secondAttribute="trailing" id="WEI-pr-e9Y"/>
+                    <constraint firstItem="aI5-ZE-9CT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Y20-38-vMs"/>
+                    <constraint firstItem="aI5-ZE-9CT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="adE-K6-D5Y"/>
+                    <constraint firstAttribute="trailing" secondItem="l1b-uN-Wil" secondAttribute="trailing" constant="20" id="efS-4i-s03"/>
+                    <constraint firstItem="Tvd-SO-Nzv" firstAttribute="top" secondItem="aI5-ZE-9CT" secondAttribute="top" id="iAj-WD-1aS"/>
+                    <constraint firstItem="l1b-uN-Wil" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qDH-dG-Y5H"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgView" destination="aI5-ZE-9CT" id="Mgg-D1-egg"/>
+                <outlet property="titleLabel" destination="Tvd-SO-Nzv" id="39L-YX-Vz7"/>
+            </connections>
+            <point key="canvasLocation" x="519" y="317"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="right.png" width="32" height="32"/>
+    </resources>
+</document>
