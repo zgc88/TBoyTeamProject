@@ -25,6 +25,11 @@
 
 /*----------------------- ThreePage --------------------*/
 #import "TravelNotesTableVC.h"
+#import "AppDelegate.h"
+#import "TravelNotesAnotherCell.h"
+#import "TravelNotesCell.h"
+#import "TravelNotesImgCell.h"
+#import "ZLPhoto.h"
 
 
 #endif /* PrefixHeader_pch */

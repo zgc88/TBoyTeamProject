@@ -37,7 +37,7 @@
     
     [self.bigImgView sd_setImageWithURL:[NSURL URLWithString:self.allDatArr[0]]];
     self.titleLable.text=dict[@"topic"];
-    NSString *subDes=[dict[@"description"] substringToIndex:60];
+    NSString *subDes=[dict[@"description"] substringToIndex:40];
     NSString *newDes=[subDes stringByAppendingString:@"...."];
     self.desLalbe.text=newDes;
     
