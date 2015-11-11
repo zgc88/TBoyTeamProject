@@ -10,4 +10,11 @@
 
 @interface PageTowT_V_Controller : UITableViewController
 
+@property (nonatomic,strong)NSString *id_str;
+
+
+
+
+
+
 @end

@@ -9,30 +9,56 @@
 #import "PageTowT_V_Controller.h"
 #import "PageTowT_V_Cell.h"
 #import "PageTowController.h"
+
+#import "Networking.h"
+#import "UIImageView+WebCache.h"
+#import "PageTowModel.h"
+
 @interface PageTowT_V_Controller ()
+
+@property (nonatomic,strong)NSMutableArray * dataarray;
+
 
 @end
 
 @implementation PageTowT_V_Controller
 
+-(instancetype)init{
+    if (self=[super init]) {
+        self.title=@"旅行灵感";
+    }
+    return self;
+}
 
 
-
+//标识符
 static NSString * const cellID = @"cellid";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //注册
     [self.tableView registerNib:[UINib nibWithNibName:@"PageTowT_V_Cell" bundle:nil] forCellReuseIdentifier:cellID];
-
+   //刷新数据
+    [self loadData];
 
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
+//解析数据
+- (void)loadData{
+    [[Networking shareNetworking]networkingGetWithURL:self.id_str Block:^(id object) {
+        NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];
+        NSArray *array = dict[@"data"];
+      
+        //将model放进数组
+        _dataarray = [[NSMutableArray alloc]initWithCapacity:20];
+        for (NSDictionary * dic in array) {
+            //初始化model
+            PageTowModel * model = [PageTowModel new];
+            [model setValuesForKeysWithDictionary:dic];
+            [_dataarray addObject:model];
+        }
+        [self.tableView reloadData];
+    }];
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
@@ -41,70 +67,41 @@ static NSString * const cellID = @"cellid";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 10;
+    return _dataarray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PageTowT_V_Cell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    //传值
+    cell.model = _dataarray[indexPath.row];
     
     
     return cell;
 }
-
+//cell高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
     return 120;
 }
-
+//点击跳转
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     PageTowController *pageVC = [PageTowController new];
+    //数据
+    PageTowModel *twomodel1 = _dataarray[indexPath.row];
+    //下一页网址
+    pageVC.id_str = [NSString stringWithFormat:@"http://q.chanyouji.com/api/v1/activity_collections/%@.json",twomodel1.id_str];
     
     [self.navigationController pushViewController:pageVC animated:YES];
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+//懒加载
+- (NSMutableArray *)dataarray{
+    if (_dataarray == nil) {
+        _dataarray = [NSMutableArray new];
+    }
+    return _dataarray;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

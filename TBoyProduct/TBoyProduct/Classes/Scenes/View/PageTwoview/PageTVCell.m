@@ -1,14 +1,14 @@
 //
-//  PageTowCell.m
+//  PageTVCell.m
 //  TBoyProduct
 //
-//  Created by lanou3g on 15/11/9.
+//  Created by lanou3g on 15/11/11.
 //  Copyright © 2015年 lanou3g. All rights reserved.
 //
 
-#import "PageTowCell.h"
+#import "PageTVCell.h"
 
-@implementation PageTowCell
+@implementation PageTVCell
 
 - (void)awakeFromNib {
     // Initialization code

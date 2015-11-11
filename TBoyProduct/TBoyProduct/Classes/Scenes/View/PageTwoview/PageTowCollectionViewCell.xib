@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellID" id="gTV-IL-0wX" customClass="PageTowCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="190"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="190"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pagetow.png" translatesAutoresizingMaskIntoConstraints="NO" id="vDk-v5-zCx">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="vDk-v5-zCx" secondAttribute="height" multiplier="1:1" id="Ah5-72-vXl"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="60"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="台湾" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5z-W0-EGF">
+                        <rect key="frame" x="59" y="150" width="32" height="20"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="puE-3L-0p2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TaiWan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ear-IV-M1Y">
+                        <rect key="frame" x="53" y="173" width="44" height="16"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="odp-jw-Mng"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vDk-v5-zCx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Mu0-1G-gdU"/>
+                <constraint firstItem="vDk-v5-zCx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Rty-L0-FBg"/>
+                <constraint firstAttribute="trailing" secondItem="vDk-v5-zCx" secondAttribute="trailing" id="W08-nY-quA"/>
+                <constraint firstItem="Ear-IV-M1Y" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="jJq-RE-R1K"/>
+                <constraint firstItem="Ear-IV-M1Y" firstAttribute="top" secondItem="m5z-W0-EGF" secondAttribute="bottom" constant="3" id="jxI-d8-dAh"/>
+                <constraint firstItem="m5z-W0-EGF" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="rfg-Pu-8WD"/>
+                <constraint firstItem="m5z-W0-EGF" firstAttribute="top" secondItem="vDk-v5-zCx" secondAttribute="bottom" id="w8g-Mn-gja"/>
+            </constraints>
+            <size key="customSize" width="150" height="190"/>
+            <connections>
+                <outlet property="image1" destination="vDk-v5-zCx" id="0nF-ra-vSY"/>
+                <outlet property="lable1a" destination="m5z-W0-EGF" id="FvE-5C-wDa"/>
+                <outlet property="lable1b" destination="Ear-IV-M1Y" id="qp1-qn-4wX"/>
+            </connections>
+            <point key="canvasLocation" x="640" y="238"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="pagetow.png" width="460" height="333"/>
+    </resources>
+</document>

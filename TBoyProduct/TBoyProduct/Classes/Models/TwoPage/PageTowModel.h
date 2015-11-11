@@ -14,11 +14,30 @@
 @property (nonatomic,strong)NSString *namet;
 //2.destinations
 //避免与系统id名字冲突
-@property (nonatomic,strong)NSString *id_str;
+@property (nonatomic,strong)NSString *id_str;//1,2,3页共用
 //cell上的name
 @property (nonatomic,strong)NSString *name;
 @property (nonatomic,strong)NSString *name_en;
-@property (nonatomic,strong)NSString *photo_url;
+
+@property (nonatomic,strong)NSString *photo_url;//1,2,3页共用
+
+
+//第2页
+@property (nonatomic,strong)NSString *subname;
+
+@property (nonatomic,strong)NSString *topic;//2,3页共用
+
+//第3页
+@property (nonatomic,strong)NSString *summary;
+
+
+
+
+
+
+
+
+
 
 
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PageTowController : UITableViewController
-
+@property (nonatomic,strong)NSString *id_str;
 @end

@@ -8,8 +8,12 @@
 
 #import "PageTowController.h"
 #import "PageTowCell.h"
+#import "PageTowModel.h"
+#import "UIImageView+WebCache.h"
+#import "Networking.h"
+#import "PageTwo4TVController.h"
 @interface PageTowController ()
-
+@property (nonatomic,strong)NSMutableArray *dataarray;
 @end
 
 @implementation PageTowController
@@ -20,29 +24,41 @@ static NSString * const cellID = @"cellid";
      //注册
     [self.tableView registerNib:[UINib nibWithNibName:@"PageTowCell" bundle:nil] forCellReuseIdentifier:cellID];
 
-
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self loadData];
 }
 
 
+- (void)loadData{
+    [[Networking shareNetworking]networkingGetWithURL:self.id_str Block:^(id object) {
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];
+        //字典给数组   (若下层字典 便利数组)
+        NSArray * array = dict[@"data"];
+        //开辟空间
+        _dataarray = [[NSMutableArray alloc]initWithCapacity:20];
+        //便利数组
+        for (NSDictionary *dic in array) {
+            PageTowModel * model = [PageTowModel new];
+            [model setValuesForKeysWithDictionary:dic];
+            [_dataarray addObject:model];
+        }//刷新数据
+        [self.tableView reloadData];
+    }];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     return 1;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 10;
+    return _dataarray.count;
 }
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PageTowCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    
+    cell.model = _dataarray[indexPath.row];
+    
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -52,51 +68,20 @@ static NSString * const cellID = @"cellid";
 
 //点击cell跳转
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PageTwo4TVController * pagetwo4 = [PageTwo4TVController new];
+    
+    [self.navigationController pushViewController:pagetwo4 animated:YES];
+    
     
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+//懒加载
+- (NSMutableArray *)dataarray{
+    if (_dataarray == nil) {
+        _dataarray = [NSMutableArray new];
+    }
+    return _dataarray;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
