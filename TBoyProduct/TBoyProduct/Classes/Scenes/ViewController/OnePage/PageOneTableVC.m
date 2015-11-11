@@ -42,7 +42,9 @@
     //隐藏tableview的线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //加载头视图
+
     //[self loadHeaderView];
+
     
 }
 
